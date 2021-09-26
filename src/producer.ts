@@ -1,10 +1,10 @@
 import { Kafka, Producer } from 'kafkajs';
 import * as Utility from './utility';
 
-const TOPIC = 'abcxyz';
+const TOPIC = 'topic.collection.news';
 const kafka = new Kafka({
     clientId: "app-publish-news",
-    brokers: ['localhost:9094']
+    brokers: ['52.15.77.79:9094']
 });
 
 const producer = kafka.producer();
@@ -24,7 +24,7 @@ const publishMessage = async (producer: Producer, topic: string, dataArray: obje
 }
 
 // Publish all data in addresses.csv to topic kafka
-const addressCsv = './data/addresses.csv';
+const addressCsv = './data/predict_data.csv';
 const dataArr = Utility.csvToObject(addressCsv);
 publishMessage(producer, TOPIC, dataArr);
 
